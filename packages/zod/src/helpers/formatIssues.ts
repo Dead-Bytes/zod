@@ -3,9 +3,9 @@ export interface Issue {
   message: string;
 }
 
-export function formatIssues(issues: Issue[]): string[] {
+export function formatIssues(issues: Issue[], separator = ": "): string[] {
   return issues.map((issue) => {
-    const path = issue.path.join(".");
-    return `${path}: ${issue.message}`;
+    const path = issue.path.length ? issue.path.join(".") : "(root)";
+    return `${path}${separator}${issue.message}`;
   });
 }
